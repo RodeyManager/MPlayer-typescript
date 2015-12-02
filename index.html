@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Music Player</title>
+    <meta charset="UTF-8"/>
+    <meta content="descriptions" charset="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <link rel="stylesheet" href="assets/css/fonts.css"/>
+
+</head>
+<body>
+    <header class="header">
+        <h3>MPlayer(音乐播放器)</h3>
+    </header>
+    <div class="blur-head" id="blur-head"></div>
+    <div class="app loading" id="app">
+        <ul class="songs" id="songs">
+
+        </ul>
+    </div>
+    <!--歌词-->
+    <div class="lrc-contanier" id="lrc-con">
+        <i class="icon icon-cancel-circle" id="close-lrc"></i>
+        <div class="content" id="lrc-content"></div>
+    </div>
+    <!--Audio标签-->
+    <audio src="" controls id="audio"></audio>
+
+<!--载入js-->
+<script src="assets/js/music.js"></script>
+
+</body>
+</html>

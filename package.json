@@ -1,0 +1,31 @@
+{
+  "name": "MPlayer-typescript",
+  "version": "1.0.6",
+  "description": "html页面之间的相互引用",
+  "main": "index.js",
+  "scripts": {
+    "test": "htmlIncluder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RodeyManager/MPlayer-typescript.git"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "Rodey",
+  "contributors": {
+    "name": "Rodey",
+    "email": "rodeyluo@gmail.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RodeyManager/MPlayer-typescript/issues"
+  },
+  "homepage": "https://github.com/RodeyManager/MPlayer-typescript#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-tsc": "^1.1.4",
+    "gulp-watch": "^4.3.5"
+  }
+}
