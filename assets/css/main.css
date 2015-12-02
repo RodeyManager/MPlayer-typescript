@@ -135,9 +135,9 @@ audio{
 }
 
 .rotation-anim{
-    -webkit-animation: rotation 2s linear infinite;
-    -o-animation: rotation 2s linear infinite;
-    animation: rotation 2s linear infinite;
+    -webkit-animation: rotation 4s linear infinite;
+    -o-animation: rotation 4s linear infinite;
+    animation: rotation 4s linear infinite;
     box-shadow: 0 0 3px 2px rgba(100, 192, 195, 0.57);
 }
 
