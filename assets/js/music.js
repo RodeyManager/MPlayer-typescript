@@ -127,6 +127,7 @@ var Main = (function () {
         this.lrcDom = document.querySelector('#lrc-content');
         this.lrcCloseDom = document.querySelector('#close-lrc');
         this.blurHeadDom = document.querySelector('#blur-head');
+        this.playingHeadDom = document.querySelector('#playing-head');
         //初始化播放器
         this.player = new Player('audio');
         this.player.audio.addEventListener('play', this.changePlayerState.bind(this), false);
@@ -225,23 +226,22 @@ var Main = (function () {
      * @param evt
      */
     Main.prototype.playNext = function (evt) {
-        this.playState = false;
         this.index++;
         if (this.index > this.song_list.length) {
             this.index = 1;
         }
-        var song = this.findSong(this.index);
-        this.player.setSong(song);
-        this.playState = true;
-        this.updateState(null, song);
+        this.play();
     };
     Main.prototype.playPrev = function (evt) {
-        this.playState = false;
         this.index--;
         if (this.index <= 1) {
             this.index = this.song_list.length;
         }
-        var song = this.findSong(this.index);
+        this.play();
+    };
+    Main.prototype.play = function (song) {
+        this.playState = false;
+        var song = song || this.findSong(this.index);
         this.player.setSong(song);
         this.playState = true;
         this.updateState(null, song);
@@ -301,13 +301,14 @@ var Main = (function () {
         }
         var parentLI = target.parentElement, img = target.previousElementSibling;
         //改变按钮状态
-        var is = document.querySelectorAll('#songs>li>i');
-        var imgs = document.querySelectorAll('#songs>li>img');
+        var lis = document.querySelectorAll('#songs>li'), is = document.querySelectorAll('#songs>li>i'), imgs = document.querySelectorAll('#songs>li>img');
         for (var i = 0, len = is.length; i < len; ++i) {
-            var itag = is[i], imgtag = imgs[i];
+            var liTag = lis[i], itag = is[i], imgtag = imgs[i];
+            liTag.className = '';
             itag.className = 'icon icon-play2';
             imgtag.className = '';
         }
+        parentLI.className = 'playing';
         if (this.playState) {
             target.classList.add('icon-pause');
             //让图片旋转
@@ -318,6 +319,12 @@ var Main = (function () {
             //让图片旋转
             img.classList.remove('rotation-anim');
         }
+        this.playingHeadDom.setAttribute('src', image);
+        this.playingHeadDom.addEventListener('touchend', function (evt) {
+            evt.stopPropagation();
+            evt.preventDefault();
+            parentLI['scrollIntoViewIfNeeded'] && parentLI['scrollIntoViewIfNeeded'](true);
+        }, false);
         //改变背景
         this.setBlurHead(image);
     };

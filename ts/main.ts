@@ -19,6 +19,8 @@ class Main{
     lrcDom: HTMLElement;
     lrcCloseDom: HTMLElement;
     blurHeadDom: HTMLElement;
+    playingHeadDom: HTMLElement;
+
     player: Player;
     //当前播放索引
     index: number;
@@ -44,6 +46,7 @@ class Main{
         this.lrcDom = <HTMLElement>document.querySelector('#lrc-content');
         this.lrcCloseDom = <HTMLElement>document.querySelector('#close-lrc');
         this.blurHeadDom = <HTMLElement>document.querySelector('#blur-head');
+        this.playingHeadDom = <HTMLElement>document.querySelector('#playing-head');
         //初始化播放器
         this.player = new Player('audio');
         this.player.audio.addEventListener('play', this.changePlayerState.bind(this), false);
@@ -162,25 +165,25 @@ class Main{
      */
     public playNext(evt?: Event): void{
 
-        this.playState = false;
         this.index++;
         if(this.index > this.song_list.length){
             this.index = 1;
         }
-        var song: Song = this.findSong(this.index);
-        this.player.setSong(song);
-        this.playState = true;
-        this.updateState(null, song);
+        this.play();
 
     }
 
     public playPrev(evt?: Event): void{
-        this.playState = false;
         this.index--;
         if(this.index <= 1){
             this.index = this.song_list.length;
         }
-        var song: Song = this.findSong(this.index);
+        this.play();
+    }
+
+    public play(song?: Song): void{
+        this.playState = false;
+        var song: Song = song || this.findSong(this.index);
         this.player.setSong(song);
         this.playState = true;
         this.updateState(null, song);
@@ -263,14 +266,19 @@ class Main{
             img: HTMLImageElement = <HTMLImageElement>target.previousElementSibling;
 
         //改变按钮状态
-        var is: any = document.querySelectorAll('#songs>li>i');
-        var imgs: any = document.querySelectorAll('#songs>li>img');
+        var lis: any = document.querySelectorAll('#songs>li'),
+            is: any = document.querySelectorAll('#songs>li>i'),
+            imgs: any = document.querySelectorAll('#songs>li>img');
         for(var i: number = 0, len: number = is.length; i < len; ++i){
-            var itag: HTMLElement = <HTMLElement>is[i],
+            var liTag: HTMLElement = <HTMLElement>lis[i],
+                itag: HTMLElement = <HTMLElement>is[i],
                 imgtag: HTMLElement = <HTMLElement>imgs[i];
+            liTag.className = '';
             itag.className = 'icon icon-play2';
             imgtag.className = '';
         }
+
+        parentLI.className = 'playing';
 
         if(this.playState) {
             target.classList.add('icon-pause');
@@ -281,6 +289,13 @@ class Main{
             //让图片旋转
             img.classList.remove('rotation-anim');
         }
+
+        this.playingHeadDom.setAttribute('src', image);
+        this.playingHeadDom.addEventListener('touchend', (evt: Event)=>{
+            evt.stopPropagation();
+            evt.preventDefault();
+            parentLI['scrollIntoViewIfNeeded'] && parentLI['scrollIntoViewIfNeeded'](true);
+        }, false);
 
         //改变背景
         this.setBlurHead(image);
