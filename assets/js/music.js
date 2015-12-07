@@ -104,6 +104,9 @@ var Main = (function () {
         this.song_list = [];
         //当前播放状态
         this.playState = false;
+        /**页面左右滑动切换歌曲区域------------START--*/
+        this._startX = 0;
+        this._touched = false;
         url && (this.songs_url = url);
         this.ajax = Ajax.getInstance({ type: 'get' });
     }
@@ -130,7 +133,33 @@ var Main = (function () {
         this.player.audio.addEventListener('pause', this.changePlayerState.bind(this), false);
         //加载播放列表
         this.loadSongs();
+        //页面左右滑动切换歌曲
+        this.appDom.addEventListener('touchstart', this._touchstartHandler.bind(this), false);
+        this.appDom.addEventListener('touchmove', this._touchmovetHandler.bind(this), false);
+        this.appDom.addEventListener('touchend', this._touchendHandler.bind(this), false);
     };
+    Main.prototype._touchstartHandler = function (evt) {
+        this._startX = evt['changedTouches'][0].clientX;
+        this._touched = true;
+    };
+    Main.prototype._touchmovetHandler = function (evt) { };
+    Main.prototype._touchendHandler = function (evt) {
+        if (!this._touched)
+            return;
+        this._touched = false;
+        var endX = evt['changedTouches'][0].clientX - this._startX;
+        var ww = window.innerWidth;
+        if (endX > ww >> 1) {
+            this.playNext();
+        }
+        else if (endX < -(ww >> 1)) {
+            this.playPrev();
+        }
+        this.appDom.removeEventListener('touchstart', this._touchstartHandler.bind(this), false);
+        this.appDom.removeEventListener('touchmove', this._touchmovetHandler.bind(this), false);
+        this.appDom.removeEventListener('touchend', this._touchendHandler.bind(this), false);
+    };
+    /**页面左右滑动切换歌曲区域------------END--*/
     /**
      * 开始加载播放列表
      */
@@ -159,7 +188,7 @@ var Main = (function () {
             //渲染列表
             this.renderSongList();
             //更新播放状态
-            this.updateState(null, this.song_list[0]);
+            this.updateState(null, this.song_list[this.index - 1]);
         }
     };
     /**
@@ -177,15 +206,17 @@ var Main = (function () {
      * @param songs
      */
     Main.prototype.createSongList = function (songs) {
-        var songs = songs, i = 0, len = songs.length, song;
+        var songs = songs.reverse(), i = 0, len = songs.length, song;
         for (; i < len; ++i) {
             song = new Song((i + 1));
             song.setData(songs[i]);
             this.song_list.push(song);
         }
-        song = this.song_list[0];
+        var random = Math.floor(Math.random() * len);
+        this.index = random === 0 ? 1 : random;
+        //this.index = 1;
+        song = this.song_list[this.index - 1];
         this.player.setSong(song);
-        this.index = 1;
         this.playState = true;
         this.player.audio.addEventListener('ended', this.playNext.bind(this), false);
     };
@@ -198,6 +229,17 @@ var Main = (function () {
         this.index++;
         if (this.index > this.song_list.length) {
             this.index = 1;
+        }
+        var song = this.findSong(this.index);
+        this.player.setSong(song);
+        this.playState = true;
+        this.updateState(null, song);
+    };
+    Main.prototype.playPrev = function (evt) {
+        this.playState = false;
+        this.index--;
+        if (this.index <= 1) {
+            this.index = this.song_list.length;
         }
         var song = this.findSong(this.index);
         this.player.setSong(song);

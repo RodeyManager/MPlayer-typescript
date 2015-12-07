@@ -24,6 +24,7 @@ class Main{
     index: number;
     //当前播放状态
     playState: boolean = false;
+    _intal: any;
 
     constructor(url?: string){
         url && (this.songs_url = url);
@@ -49,7 +50,38 @@ class Main{
         this.player.audio.addEventListener('pause', this.changePlayerState.bind(this), false);
         //加载播放列表
         this.loadSongs();
+        //页面左右滑动切换歌曲
+        this.appDom.addEventListener('touchstart', this._touchstartHandler.bind(this), false);
+        this.appDom.addEventListener('touchmove', this._touchmovetHandler.bind(this), false);
+        this.appDom.addEventListener('touchend', this._touchendHandler.bind(this), false);
+
     }
+
+    /**页面左右滑动切换歌曲区域------------START--*/
+    private _startX: number = 0;
+    private _touched: boolean = false;
+    private _touchstartHandler(evt: Event): void{
+        this._startX = evt['changedTouches'][0].clientX;
+        this._touched = true;
+    }
+    private _touchmovetHandler(evt: Event): void{}
+    private _touchendHandler(evt: Event): void{
+        if(!this._touched)  return;
+        this._touched = false;
+        var endX = evt['changedTouches'][0].clientX - this._startX;
+        var ww: number = window.innerWidth;
+        if(endX > ww >> 1){
+            this.playNext()
+        }
+        else if(endX < -(ww >> 1)){
+            this.playPrev();
+        }
+
+        this.appDom.removeEventListener('touchstart', this._touchstartHandler.bind(this), false);
+        this.appDom.removeEventListener('touchmove', this._touchmovetHandler.bind(this), false);
+        this.appDom.removeEventListener('touchend', this._touchendHandler.bind(this), false);
+    }
+    /**页面左右滑动切换歌曲区域------------END--*/
 
     /**
      * 开始加载播放列表
@@ -81,7 +113,7 @@ class Main{
             //渲染列表
             this.renderSongList();
             //更新播放状态
-            this.updateState(null, this.song_list[0]);
+            this.updateState(null, this.song_list[this.index - 1]);
         }
     }
 
@@ -102,7 +134,7 @@ class Main{
      */
     public createSongList(songs: any[]): void{
 
-        var songs: any[] = songs,
+        var songs: any[] = songs.reverse(),
             i: number = 0,
             len: number = songs.length,
             song: Song;
@@ -113,10 +145,12 @@ class Main{
             this.song_list.push(song);
         }
 
-        song = this.song_list[0];
+        var random: number = Math.floor(Math.random() * len);
+        this.index = random === 0 ? 1 : random;
+        //this.index = 1;
+        song = this.song_list[this.index - 1];
 
         this.player.setSong(song);
-        this.index = 1;
         this.playState = true;
         this.player.audio.addEventListener('ended', this.playNext.bind(this), false);
 
@@ -126,7 +160,7 @@ class Main{
      * 播放下一首
      * @param evt
      */
-    public playNext(evt: Event): void{
+    public playNext(evt?: Event): void{
 
         this.playState = false;
         this.index++;
@@ -138,6 +172,18 @@ class Main{
         this.playState = true;
         this.updateState(null, song);
 
+    }
+
+    public playPrev(evt?: Event): void{
+        this.playState = false;
+        this.index--;
+        if(this.index <= 1){
+            this.index = this.song_list.length;
+        }
+        var song: Song = this.findSong(this.index);
+        this.player.setSong(song);
+        this.playState = true;
+        this.updateState(null, song);
     }
 
     /**
@@ -235,6 +281,7 @@ class Main{
             //让图片旋转
             img.classList.remove('rotation-anim');
         }
+
         //改变背景
         this.setBlurHead(image);
     }

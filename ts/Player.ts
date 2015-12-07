@@ -18,6 +18,7 @@ class Player{
         this.audioId = audioId;
         this.song = song;
         this.audio = <HTMLAudioElement>document.querySelector('#' + audioId);
+
     }
 
     /**

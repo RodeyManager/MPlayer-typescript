@@ -258,12 +258,92 @@
             "lrc": "http://a.10155.com/90115000/fulltrack_dl/91892000/MP3_40_16_Stero/201308190013/default.lrc"
         },
         {
-            "title": "Conquest Of Paradise (征服天堂)",
-            "url": "http://a.10155.com/90115000/fulltrack_dl/91892000/MP3_40_16_Stero/201308190013/1481187.mp3",
+            "title": "年轮 - 张碧晨",
+            "url": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/20150625/192023.mp3",
             "ext": "mp3",
             "duration": "4.10",
-            "image": "http://e.hiphotos.baidu.com/baike/w%3D268/sign=ea0b4aa45343fbf2c52ca125887fca1e/b8389b504fc2d562a962bf41e71190ef76c66c37.jpg",
-            "lrc": "http://a.10155.com/90115000/fulltrack_dl/91892000/MP3_40_16_Stero/201308190013/default.lrc"
+            "image": "http://a.10155.com/picture/91789000/copyright/singer/201509069178902/100/880023.jpg",
+            "lrc": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/20150625/192023.lrc"
+        },
+        {
+            "title": "稳稳的幸福 - 陈奕迅",
+            "url": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/2013012801/670001.mp3",
+            "ext": "mp3",
+            "duration": "03:43",
+            "image": "http://a.10155.com/picture/91789000/copyright/singer/201509069178902/100/880010.jpg",
+            "lrc": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/2013012801/670001.lrc"
+        },
+        {
+            "title": "夜空中最亮的星(Live版) - 逃跑计划",
+            "url": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/2015052592389000/586021.mp3",
+            "ext": "mp3",
+            "duration": "04:29",
+            "image": "http://a.10155.com/picture/91892000/copyright/singer/201212220303/100/singer63489.jpg",
+            "lrc": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/2015052592389000/586021.lrc"
+        },
+        {
+            "title": "当你老了(Live版) - 李健",
+            "url": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/20150215/177035.mp3",
+            "ext": "mp3",
+            "duration": "05:18",
+            "image": "http://a.10155.com/picture/91789000/copyright/singer/201509069178902/100/880014.jpg",
+            "lrc": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/20150215/177035.lrc"
+        },
+        {
+            "title": "爱江山更爱美人 - 李丽芬",
+            "url": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/2013021901/761283.mp3",
+            "ext": "mp3",
+            "duration": "05:08",
+            "image": "http://a.10155.com/picture/90201000/copyright/singer/2010052511/100/110386.jpg",
+            "lrc": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/2013021901/761283.lrc"
+        },
+        {
+            "title": "把悲伤留给自己 - 陈升",
+            "url": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/2012123101/701013.mp3",
+            "ext": "mp3",
+            "duration": "04:22",
+            "image": "http://a.10155.com/picture/91789000/copyright/singer/201509069178902/100/880223.jpg",
+            "lrc": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/2012123101/701013.lrc"
+        },
+        {
+            "title": "味道 - 辛晓琪",
+            "url": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/2013021901/761311.mp3",
+            "ext": "mp3",
+            "duration": "04:22",
+            "image": "http://a.10155.com/picture/91789000/copyright/singer/201509069178902/100/880140.jpg",
+            "lrc": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/2013021901/761311.lrc"
+        },
+        {
+            "title": "上海一九四三 - 周杰伦",
+            "url": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/2011120801/660015.mp3",
+            "ext": "mp3",
+            "duration": "03:13",
+            "image": "http://a.10155.com/picture/91789000/copyright/singer/201509069178902/100/880003.jpg",
+            "lrc": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/2011120801/660015.lrc"
+        },
+        {
+            "title": "我是不是你最疼爱的人 - 潘越云",
+            "url": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/2013013101/751076.mp3",
+            "ext": "mp3",
+            "duration": "03:13",
+            "image": "http://a.10155.com/picture/91789000/copyright/singer/201509069178902/100/880326.jpg",
+            "lrc": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/2013013101/751076.lrc"
+        },
+        {
+            "title": "南山南(Live版) - 张磊",
+            "url": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/20150727/194039.mp3",
+            "ext": "mp3",
+            "duration": "03:13",
+            "image": "http://a.10155.com/picture/91789000/copyright/singer/201509069178902/100/220001.jpg",
+            "lrc": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/20150727/194039.lrc"
+        },
+        {
+            "title": "中学时代 - 水木年华",
+            "url": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/20150202/175043.mp3",
+            "ext": "mp3",
+            "duration": "03:13",
+            "image": "http://a.10155.com/picture/91789000/copyright/singer/201509069178902/100/880194.jpg",
+            "lrc": "http://a.10155.com/90115000/fulltrack_dl/MP3_40_16_mono/20150202/175043.lrc"
         }
     ]
 }
